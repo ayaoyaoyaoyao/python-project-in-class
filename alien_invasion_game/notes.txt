@@ -1,0 +1,18 @@
+notes:
+error types:
+    Name error: 
+        you used name in your program, but the name was not defined.
+    
+    attribute error: 
+        similar to name error, attribute is a name of a object that is not defined. Object xxx does not have attribute xxx. ship. rect, rect attribute was not defined, then you can see attribute error
+    
+    indentation error:
+        the line after thesse keyword, if it is not indented, you will have the indentation error.
+        indentation inconsistant
+        - while
+        - def
+        - for
+        - if
+        - class
+    
+    syntax error
