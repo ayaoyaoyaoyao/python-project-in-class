@@ -25,11 +25,11 @@ class AlienInvasion:
     def __init__(self):
         """初始化游戏并创建游戏资源"""
         pygame.init()
-        self.clock = pygame.time.Clock()
-        self.settings = Settings()
+        self.clock = pygame.time.Clock() #pygame.time module Clock() object
+        self.settings = Settings() # Settings() object
         
         #让游戏一开始处于一个非活动状态
-        self.game_active = False
+        self.game_active = False 
         
         #全屏模式
         """
