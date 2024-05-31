@@ -29,14 +29,14 @@ class AlienInvasion:
         self.settings = Settings() # Settings() object
         
         #让游戏一开始处于一个非活动状态
-        self.game_active = False 
+        self.game_active = False #boolean data type
         
         #全屏模式
         """
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         """
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.settings.screen_width = self.screen.get_rect().width
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # function for setting the display mode
+        self.settings.screen_width = self.screen.get_rect().width # screen object's method that returns an integer
         self.settings.screen_width = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
         
@@ -45,7 +45,7 @@ class AlienInvasion:
         self.sb = Scoreboard(self)
         
         self.ship = Ship(self)
-        self.bullets = pygame.sprite.Group()
+        self.bullets = pygame.sprite.Group() # Object
         self.aliens = pygame.sprite.Group()
         
         self._create_fleet()
@@ -63,7 +63,7 @@ class AlienInvasion:
             """监听键盘和鼠标事件"""
             self._check_events()
             
-            if self.game_active:
+            if self.game_active: # returns a boolean data type True or False
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
@@ -80,8 +80,8 @@ class AlienInvasion:
     def _check_events(self):
          """响应案件和鼠标事件"""
          global running
-         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+         for event in pygame.event.get(): # a function in the module "event" that returns a list
+            if event.type == pygame.QUIT: # boolean type
                 running=False
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -93,7 +93,7 @@ class AlienInvasion:
                 
     def _check_play_button(self, mouse_pos):
         """在玩家点击play按钮时开始新游戏"""
-        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos) # methode
         if button_clicked and not self.game_active:
             #还原游戏设置
             self.settings.initialize_dynamic_settings()
@@ -138,7 +138,7 @@ class AlienInvasion:
             
     def _fire_bullet(self):
         """创造一颗子弹，并将其加入编组bullets"""
-        if len(self.bullets) < self.settings.bullets_allowed:
+        if len(self.bullets) < self.settings.bullets_allowed: # object's attribute that returns an integer
            new_bullet = Bullet(self)
            self.bullets.add(new_bullet)
           
@@ -149,7 +149,7 @@ class AlienInvasion:
         self.bullets.update()
         
         #删除已消失的子弹
-        for bullet in self.bullets.copy():
+        for bullet in self.bullets.copy(): # object that returns a lst
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
                 
@@ -158,7 +158,7 @@ class AlienInvasion:
     def _check_bullet_alien_collisions(self):
         """响应子弹和外星人的碰撞"""
         #删除发生碰撞的子弹和外星人
-        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True) # funtion in the object (sprite) that returns a dictionary
         
         if collisions:
             for aliens in collisions.values():
@@ -206,8 +206,8 @@ class AlienInvasion:
     
     def _check_fleet_edges(self):
         """在有外星人到达边缘时采取相应的措施"""
-        for alien in self.aliens.sprites():
-            if alien.check_edges():
+        for alien in self.aliens.sprites(): # object that returns a list
+            if alien.check_edges(): # method that returns a boolean type
                 self._change_fleet_direction()
                 break
             
